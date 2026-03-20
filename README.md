@@ -6,6 +6,8 @@ The included example is a human-in-the-loop content review app with reminders, e
 
 **See it running**: [nextjs-starter.posthook.io](https://nextjs-starter.posthook.io) ([demo source](https://github.com/posthook/nextjs-starter-live))
 
+[![Live demo screenshot](screenshot.png)](https://nextjs-starter.posthook.io)
+
 ## Setup
 
 ```bash
