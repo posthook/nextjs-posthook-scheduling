@@ -1,15 +1,12 @@
-import { pgTable, text, integer } from "drizzle-orm/pg-core";
+import { pgTable, text } from "drizzle-orm/pg-core";
 
 export const tasks = pgTable("tasks", {
   id: text("id").primaryKey(),
-  status: text("status").notNull().default("pending_review"),
-  contentType: text("content_type").notNull(),
-  prompt: text("prompt").notNull(),
-  draft: text("draft").notNull().default(""),
+  status: text("status").notNull().default("pending"),
+  description: text("description").notNull(),
   createdAt: text("created_at").notNull(),
   updatedAt: text("updated_at").notNull(),
+  remindAt: text("remind_at"),
   remindedAt: text("reminded_at"),
-  resolvedAt: text("resolved_at"),
-  snoozeUntil: text("snooze_until"),
-  reminderEpoch: integer("reminder_epoch").notNull().default(0),
+  doneAt: text("done_at"),
 });

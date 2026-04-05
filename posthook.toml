@@ -1,0 +1,23 @@
+# Posthook config-as-code — manage sequences and project settings.
+#
+# Getting started:
+#   npx posthook init        — connects your Posthook project (keeps these sequences)
+#   npx posthook apply       — deploys sequences to Posthook
+#
+# Other commands:
+#   npx posthook validate    — check syntax locally
+#   npx posthook diff        — preview what will change
+#
+# Docs: https://docs.posthook.io/essentials/config-as-code
+
+[[sequences]]
+name = "daily-cleanup"
+start_at = "2026-01-01T03:00:00Z"
+
+[sequences.schedule]
+frequency = "daily"
+timezone = "UTC"
+time = { hour = 3, minute = 0 }
+
+[sequences.steps.cleanup]
+path = "/api/webhooks/cleanup"

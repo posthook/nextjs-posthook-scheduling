@@ -1,1 +1,131 @@
 @import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+}
+
+:root {
+  --background: #faf8f5;
+  --foreground: #1a1a2e;
+  --card: #ffffff;
+  --card-foreground: #1a1a2e;
+  --primary: #1a1a2e;
+  --primary-foreground: #faf8f5;
+  --secondary: #f0edfa;
+  --secondary-foreground: #1a1a2e;
+  --muted: #f0edfa;
+  --muted-foreground: #6b6b8a;
+  --accent: #e8f4f0;
+  --accent-foreground: #1a1a2e;
+  --destructive: #e88b8b;
+  --border: #1a1a2e;
+  --input: #d8d5e8;
+  --ring: #b8a9e8;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  }
+  code, pre, .font-mono {
+    font-family: var(--font-geist-mono), ui-monospace, monospace;
+  }
+}
+
+/* Comic-book card */
+.comic-card {
+  border: 2.5px solid var(--foreground);
+  border-radius: 1rem;
+  box-shadow: 4px 4px 0 var(--foreground);
+  background: var(--card);
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+.comic-card:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0 var(--foreground);
+}
+
+/* Comic button */
+.comic-btn {
+  border: 2.5px solid var(--foreground);
+  border-radius: 0.75rem;
+  box-shadow: 3px 3px 0 var(--foreground);
+  font-weight: 700;
+  transition: transform 0.1s, box-shadow 0.1s;
+  cursor: pointer;
+}
+.comic-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 var(--foreground);
+}
+.comic-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--foreground);
+}
+.comic-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 3px 3px 0 var(--foreground);
+}
+
+/* Comic input */
+.comic-input {
+  border: 2.5px solid var(--foreground);
+  border-radius: 0.75rem;
+  box-shadow: 3px 3px 0 var(--foreground);
+  background: var(--card);
+  font-weight: 500;
+  transition: box-shadow 0.1s;
+}
+.comic-input:focus {
+  box-shadow: 4px 4px 0 var(--ring);
+  outline: none;
+}
+
+/* Pastel accents */
+.pastel-lavender { background: #f0edfa; }
+.pastel-mint { background: #e8f4f0; }
+.pastel-yellow { background: #fdf5d8; }
+
+/* Jiggle animation for CTA */
+@keyframes jiggle {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  20% { transform: rotate(-2deg) scale(1.01); }
+  40% { transform: rotate(2deg) scale(1.01); }
+  60% { transform: rotate(-1deg) scale(1.005); }
+  80% { transform: rotate(1deg) scale(1.005); }
+}
+.jiggle {
+  animation: jiggle 0.5s ease-in-out 1.5s 2;
+}
+
+/* Fade-in for new task cards */
+@keyframes slide-up {
+  0% { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out;
+}

@@ -4,7 +4,7 @@ services:
     ports:
       - '5432:5432'
     environment:
-      POSTGRES_DB: approval_queue
+      POSTGRES_DB: posthook_starter
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     volumes:

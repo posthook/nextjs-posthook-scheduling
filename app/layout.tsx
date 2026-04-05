@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
+const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
+
 export const metadata: Metadata = {
-  title: "Posthook Next.js Starter",
-  description: "Schedule delayed tasks in Next.js with Posthook.",
+  title: "Posthook + Next.js Reminders",
+  description: "Schedule webhooks that fire at the right time. No cron, no queues.",
 };
 
 export default function RootLayout({
@@ -12,8 +16,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className="min-h-dvh flex flex-col">
+        {children}
+      </body>
     </html>
   );
 }

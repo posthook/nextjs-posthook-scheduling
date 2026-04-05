@@ -1,5 +1,6 @@
 import { createTask } from "@/lib/tasks";
 import { listTasks } from "@/lib/store";
+import type { Duration } from "@posthook/node";
 
 export async function GET() {
   const tasks = await listTasks();
@@ -13,23 +14,17 @@ export async function POST(request: Request) {
   } catch {
     return Response.json({ error: "Invalid JSON" }, { status: 400 });
   }
-  const { prompt, contentType, draft } = body;
+  const { description, delay } = body;
 
-  if (!prompt || !contentType || !draft) {
-    return Response.json(
-      { error: "prompt, contentType, and draft are required" },
-      { status: 400 }
-    );
+  if (!description) {
+    return Response.json({ error: "description is required" }, { status: 400 });
   }
 
   try {
-    const task = await createTask(prompt, contentType, draft);
+    const task = await createTask(description, delay as Duration | undefined);
     return Response.json(task, { status: 201 });
   } catch (err) {
     console.error("[tasks] Create error:", err);
-    return Response.json(
-      { error: (err as Error).message },
-      { status: 500 }
-    );
+    return Response.json({ error: (err as Error).message }, { status: 500 });
   }
 }
